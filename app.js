@@ -12,7 +12,7 @@ const menu = require("./Routes/menu");
 const order = require("./Routes/order");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
-const ExpressError = require("../Backend/views/utils/ExpressError");
+const ExpressError = require("./views/utils/ExpressError");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -63,6 +63,7 @@ app.use((req, res, next) => {
   res.locals.currUser = req.user;
   next();
 });
+
 app.use("/Menu", menu);
 app.use("/", order);
 app.use("/", user);

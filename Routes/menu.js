@@ -17,6 +17,7 @@ const validateMenu = (req, res, next) => {
     next();
   }
 };
+
 router.get("/", menuController.index);
 router.get("/new", isLoggedIn, menuController.renderNewForm);
 router.post(
