@@ -1,0 +1,51 @@
+<% layout("/layouts/boilerplate") %>
+
+<div>
+  <h1>Place Your Order</h1>
+  <form action="/order/place" method="POST">
+    <label for="items">Select Items:</label>
+    <% menuItems.forEach(item => { %>
+    <div>
+      <input
+        type="radio"
+        name="itemId"
+        value="<%= item._id %>"
+        id="item-<%= item._id %>"
+        required
+      />
+      <label for="item-<%= item._id %>"
+        ><%= item.name %> - $<%= item.price %></label
+      >
+      <input
+        type="number"
+        name="quantity"
+        id="quantity-<%= item._id %>"
+        min="1"
+        value="1"
+        disabled
+        required
+      />
+    </div>
+    <% }) %>
+
+    <script>
+      document.querySelectorAll('input[name="itemId"]').forEach((radio) => {
+        radio.addEventListener("change", function () {
+          document
+            .querySelectorAll('input[name="quantity"]')
+            .forEach((input) => {
+              input.disabled = true;
+            });
+          const quantityInput = document.querySelector(
+            `#quantity-${this.value}`
+          );
+          if (quantityInput) quantityInput.disabled = false;
+        });
+      });
+    </script>
+
+    <br /><br />
+
+    <button type="submit">Place Order</button>
+  </form>
+</div>

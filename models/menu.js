@@ -5,7 +5,7 @@ const MenuSchema = new mongoose.Schema({
   image: { url: String, filename: String },
   category: { type: String, required: true },
   price: { type: Number, required: true },
-  availability: { type: Boolean, default: true },
+  availability: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("Menu", MenuSchema);

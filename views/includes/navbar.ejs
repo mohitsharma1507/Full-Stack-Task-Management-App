@@ -6,7 +6,7 @@
     padding: 0 1rem 0 1rem;
   }
   .btn-search:hover {
-    background-color: #ff8c00;
+    background-color: #ff8c00c5;
     color: white;
   }
   .btn-search i {
@@ -18,10 +18,13 @@
     padding: 0.5rem 3rem 0.5rem 3rem;
   }
 </style>
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav
+  class="navbar navbar-expand-md bg-body-light border-bottom sticky-top"
+  style="background-color: #ff8c00"
+>
   <div class="container-fluid">
     <a class="navbar-brand" href="/Menu"
-      ><i class="fa-solid fa-bowl-food"></i
+      ><i class="fa-solid fa-bowl-food" style="font-size: 25px"></i
     ></a>
     <button
       class="navbar-toggler"
@@ -33,7 +36,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/Menu">Twiggy</a>
+        <a
+          class="nav-link"
+          href="/Menu"
+          style="font-size: 25px; font-weight: 800"
+          >Twiggy</a
+        >
       </div>
       <div class="navbar-nav ms-auto">
         <form class="d-flex">
@@ -48,7 +56,10 @@
         </form>
       </div>
       <div class="navbar-nav ms-auto">
-        <% if (!token) { %>
+        <a class="nav-link" href="/Order/placeOrder">Place Order</a>
+        <a class="nav-link" href="/Order/order">Order</a>
+        <a class="nav-link" href="/Menu/new">ADD NEW MENU</a>
+        <% if (!currUser) { %>
         <a class="nav-link" href="/Register"><b>Register</b></a>
         <a class="nav-link" href="/Login"><b>Log in</b></a>
         <% } else { %>

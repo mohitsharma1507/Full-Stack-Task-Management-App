@@ -1,0 +1,104 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <h3>Edit Menu</h3>
+    <form
+      method="POST"
+      action="/menu/<%= menu._id %>?_method=PUT"
+      novalidate
+      class="needs-validation"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          id="name"
+          name="menu[name]"
+          value="<%= menu.name %>"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">Name looks good</div>
+        <div class="invalid-feedback">Name is required</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <textarea
+          id="category"
+          name="menu[category]"
+          class="form-control"
+          required
+        >
+          <%= menu.category %>
+        </textarea>
+        <div class="invalid-feedback">Category is required</div>
+      </div>
+
+      <div class="mb-3">
+        <label>Original Menu Image</label><br />
+        <img
+          src="<%= originalImageUrl %>"
+          height="120px"
+          width="auto"
+          alt="Current Menu Image"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload New Image</label>
+        <input id="image" name="menu[image]" type="file" class="form-control" />
+      </div>
+
+      <div class="row">
+        <div class="mb-3 col-md-4">
+          <label for="price" class="form-label">Price</label>
+          <input
+            id="price"
+            name="menu[price]"
+            value="<%= menu.price %>"
+            type="number"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Price is required</div>
+        </div>
+      </div>
+
+      <div class="form-check mb-3">
+        <input type="hidden" name="menu[availability]" value="false" />
+
+        <button type="button" class="btn btn-success" id="toggleAvailability">
+          <%= menu.availability ? 'Set as Unavailable' : 'Set as Available' %>
+        </button>
+      </div>
+
+      <button type="submit" class="btn btn-dark edit-btn mb-3">
+        Save Changes
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  document
+    .querySelector("#toggleAvailability")
+    .addEventListener("click", function () {
+      const hiddenInput = document.querySelector(
+        'input[name="menu[availability]"]'
+      );
+      if (hiddenInput.value === "false") {
+        hiddenInput.value = "true";
+        this.textContent = "Set as Unavailable";
+        this.classList.remove("btn-success");
+        this.classList.add("btn-danger");
+      } else {
+        hiddenInput.value = "false";
+        this.textContent = "Set as Available";
+        this.classList.remove("btn-danger");
+        this.classList.add("btn-success");
+      }
+    });
+</script>
